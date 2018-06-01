@@ -1,0 +1,8 @@
+cmake -H. -B_builds -DCMAKE_BUILD_TYPE=Release
+-- or --
+cmake -H. -B_builds -DCMAKE_BUILD_TYPE=Debug
+
+-- then --
+cmake --build _builds --config Release
+-- or --
+cmake --build _builds --config Debug

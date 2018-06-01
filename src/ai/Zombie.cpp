@@ -31,6 +31,12 @@ void Zombie::render() {
 Zombie::Zombie(){
 }
 
+Zombie::Zombie(Zombie &&zombie) {
+  x = zombie.x;
+  y = zombie.y;
+  texture = zombie.texture;
+}
+
 void Zombie::init(int width, int height, SDL_Renderer* renderer) {
     this->texture.setWH(width, height);
     this->texture.renderer = renderer;

@@ -12,6 +12,7 @@ class Zombie {
     public:
     Zombie(const Zombie&) = delete;
     Zombie();
+    Zombie(Zombie &&zombie);
     ~Zombie();
     int x;
     int y;

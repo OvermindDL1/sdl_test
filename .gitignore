@@ -14,6 +14,9 @@ shittybackup.cpp
 src.zip
 
 
+# Default build directory
+_builds
+
 # Prerequisites
 *.d
 
