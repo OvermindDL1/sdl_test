@@ -22,6 +22,8 @@ add_executable(sdl-test
 	src/graphics/Texture.cpp
 )
 
+target_include_directories(sdl-test PRIVATE src) # Header files should be in their own directory, but whatever...
+
 target_compile_features(sdl-test PRIVATE cxx_std_14)
 
 target_link_libraries(sdl-test
