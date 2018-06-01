@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string>
 #include <cmath>
+#include <vector>
 
 #include "graphics/Texture.h"
 
@@ -31,6 +32,8 @@ SDL_Window* window = NULL;
 Player player;
 Zombie zombie;
 
+std::vector<Zombie> zombies;
+
 SDL_Renderer* renderer;
 
 
@@ -57,7 +60,10 @@ bool init() {
 		} else{
 			renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED );
 			player.init(32, 32, renderer);
-			zombie.init(32, 32, renderer);
+			//zombie.init(32, 32, renderer);
+			for (Zombie &z : zombies) {
+				z.init(32, 32, renderer);
+			}
 
 			if( renderer == NULL )
 			{
@@ -85,7 +91,10 @@ bool loadMedia() {
 	//Loading success flag
 	bool success = true; 
 	player.texture.loadFromFile("assets/old_assets/player.png");
-	zombie.texture.loadFromFile("assets/old_assets/zombie.png");
+	//zombie.texture.loadFromFile("assets/old_assets/zombie.png");
+	for (Zombie &z : zombies) {
+		z.texture.loadFromFile("assets/old_assets/zombie.png");
+	}
 	return success;
 }
 
@@ -103,6 +112,7 @@ void close() {
 int main( int argc, char* args[] ) {
 	player.x = 100;
 	player.y = 100;
+	zombies.emplace_back();
 	//Start up SDL and create window
 	if( !init() ) {
 		printf( "Failed to initialize!\n" );
@@ -157,11 +167,17 @@ int main( int argc, char* args[] ) {
 				SDL_RenderClear(renderer);
 
 				if (SDL_GetTicks() % 80 == 0) {
-					zombie.move(player); //player dissapears when zombie.move is called
+					//zombie.move(player); //player dissapears when zombie.move is called
+					for (Zombie &z : zombies) {
+						z.move(player);
+					}
 					//puts("moved!");
 				}
-				zombie.render();
+				//zombie.render();
 				player.render();
+				for (Zombie &z : zombies) {
+					z.render();
+				}
 				
 
 				//Update screen

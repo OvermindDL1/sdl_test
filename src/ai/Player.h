@@ -9,6 +9,7 @@
 
 class Player {
     public:
+    Player(const Player&) = delete;
     Player();
     ~Player();
     int x;

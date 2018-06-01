@@ -10,6 +10,7 @@
 
 class Zombie {
     public:
+    Zombie(const Zombie&) = delete;
     Zombie();
     ~Zombie();
     int x;
